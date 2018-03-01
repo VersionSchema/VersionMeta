@@ -1,6 +1,8 @@
 # VersionMeta
 A project to define and promote a standard meta tag to reference a version schema.
 
+Official web site: http://versionmeta.org/
+
 ## What's the point?
 There are many versioning schemes in use today (ie;semver.org) with varying levels of support and documentation. None of these that I am currently aware of, have a machine readable schema or even include any pointers to their own definitions. The proposal here is something along the lines of, if you're SemVer for instance, then you'd have SemVer 3.0.0 {https://semver.org/schema}, rather than just the bare version scheme. Whats at the end of that URI has yet to be determined, but I suspect something along the lines of an XSD and/or whatever turns out to be the JSON or YAML equivalents, such that tools can instantiate a rules engine that can be used to automatically "reason" about the version number and it's relation to other version numbers for a given package.
 
