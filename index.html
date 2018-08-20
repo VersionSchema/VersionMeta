@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="author" content="Joseph W Donahue" />
+    <meta name="description" content="Version Meta spec and web site" />
+    <link rel="canonical" href="https://versionmeta.org/" />
+    <title>Version Meta Experimental.0 {VSChemaUnderDef.0}</title>
+  </head>
+  <body>
+    <!-- TODO: CSS! -->
+    <div id="product-tag">
+      <h1>Version Meta<br>
+        <div id="semver-tag">
+          <small>
+            <small>
+                Experimental.0
+              <small>
+              <div id="versionmeta-tag">
+                {VSchemaUnderDev.0}
+              </div>
+              </small>
+            </small>
+          </small>
+        </div>
+      </h1>
+    </div>
+
+    <h2 id="summary">
+        Summary
+    </h2>
+    <p>
+    Version Meta is a proposed standard Uniform Resource Locator (URI) tag for version strings. 
+    The tag is meant to convey both human and machine readable information regarding the location of the version schema used to build the version string. 
+    All version meta tags will be enclosed in curly braces {} and MUST always immediately precede or follow a version string conforming to the specified schema. 
+    See <a href=http://versionschema.org>versionschema.org</a> for details on the proposed schema DOM.
+    </p>
+
+    <h2 id="introduction">
+        Introduction
+    </h2>
+    <p>
+    There are many packaging schemes in use today that each; 
+    either have their own versioning scheme, 
+    or varying levels of adherence to some specified standard, 
+    such as one version or another of <a href="https://semver.org">Semantic Versioning</a>. 
+    Currently only context and format analysis distinguishes them from each other. 
+    Consider the following version strings:
+    </p>
+
+    <ol>
+      <li>"1"</li>
+      <li>"1.0"</li>
+      <li>"1.0.0"</li>
+      <li>"1.0.0.0"</li>
+    </ol>
+
+    <p>
+    Depending on the context, 
+    #1 might just be an abbreviation referring to any of the others. 
+    #2 could also be an abbreviation of #'s 3 or 4, 
+    but its format could also imply that it is a tuple version number of some unknown pedigree. 
+    #3 may be the most pernicious, 
+    as it appears that it may conform to any of SemVer's specification versions, 
+    and the version triple is probably the most common format in use, 
+    so one cannot assume it's a SemVer string based on the triple. 
+    #4 could be almost anything. 
+    None of them tell us anything about the logic, 
+    if any, 
+    that was applied to generate the version.
+    </p>
+
+    <p>
+    Most versioning schemes give us some relief in the form of meta tags, 
+    such as prerelease labels or build meta-data. 
+    If we understand the language that the tags derive from, 
+    we can make some assumptions about the relative quality of each version of a particular product. 
+    <!-- Need a more relevent example here -->
+    Only rarely can we apply such logic to different products satisfying similar needs, 
+    because we know nothing of the processes applied by the varying product developers. 
+    Consider the following:
+    </p>
+
+    <ul>
+      <li>UberSkyLib 2.1.3-RC1</li>
+      <li>HyperSkyLib 0.0.93-Experimental</li>
+    </ul>
+
+    <p>
+    One might suspect that the UberSkyLib product is a stable,
+    shipping product and HyperSkyLib is obviously experimental, 
+    so perhaps we should investigate UberSkyLib as a candidate for inclusion in our product? 
+    Other than the implied goodness of the RC1 tag, 
+    and the fact there are no leading zeroes in the version number, 
+    we really have no reason at all to suspect that UberSkyLib is any more stable than HyperSkyLib. 
+    Even if we know they both adhere to <a href="https://semver.org">Semantic Versioning</a>, 
+    we still don't know anything about their relative development practices. 
+    Without digging into both of them using ad-hoc research methods, 
+    all we can do is guess. 
+    It could be that HyperSkyLib is based off of UberSkyLib 1.0.0 and that their 93 versions are a couple of hundred fewer than UberSkyLib.
+    The standards and methods of each product team cannot be known from the version label,
+    and the contexts within which version labels are found; 
+    rarely have obvious linkage to those standards and methods.
+    </p>
+
+    <p>
+    The proposed solution to these and other issues around package version labels, 
+    is to promote the use of the Version Meta tag, 
+    to provide a standard method for obtaining the necessary information we need,
+    to make critical judgements regarding the expected quality of a given release. 
+    I propose that a <a href="http://versionschema.org">Version Schema</a> standard be developed
+    and evolve to satisfy the needs of the developer and consumer communities. 
+    The Version Meta standard will only address the content, 
+    formats and locations of the Version Meta tag, 
+    not the Version Schema.
+    </p>
+
+
+    <div id="spec">
+    <div id="versionmeta">
+      <h2 id="version_meta_specification">
+        Version Meta Specification (VersionMeta)</h2>
+      <p>
+      The key-words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>.  
+        The phrase "Version Meta tag" used herein, 
+        refers to tags used to specify a URI to a Version Schema and should not be confused with other meta tags that may be specified by various version schemes (Build Meta used in SemVer for instance).
+      </p>
+
+      <p><a name="1"><a href="#1">1.</a></a>
+        All version Meta tags MUST be expressed as UTF-8 code sequences.
+      </p> 
+      <p><a name="2"><a href="#2">2.</a></a>
+        All Version Meta tags MUST begin with an opening curly brace '{',
+        which MUST be followed by a URI, 
+        which MUST be followed by a closing curly brace '}'.
+      </p> 
+      <p>TBD: Right to left languages?</p>
+      <p>TBD: Different/Alternate delimiters?</p>
+
+      <p><a name="3"><a href="#3">3.</a></a>
+        Version Meta tags MUST NOT contain any whitespace between the URI and the opening and closing currly braces.
+      </p> 
+      <p><a name="4"><a href="#4">4.</a></a>
+        There MUST NOT be more than one Version Meta tag associated with any version string.
+      </p> 
+      <p><a name="5"><a href="#5">5.</a></a>
+        Version Meta tags SHOULD be placed on the same line as their respective version strings.
+      </p> 
+      <p><a name="6"><a href="#6">6.</a></a>
+        Version Meta tags SHOULD follow their respective version strings.
+      </p> 
+      <p><a name="7"><a href="#7">7.</a></a>
+        Version Meta tags MUST be within plus or minus one line of their respective version strings.
+      </p> 
+      <p><a name="8"><a href="#8">8.</a></a>
+        Version Meta tags MAY precede or follow their respective version strings.
+      </p> 
+      <p><a name="9"><a href="#9">9.</a></a>
+        When multiple product version strings are displayed in close proximity, 
+        such as a list or table,
+        the associated Version Meta tags MUST be displayed with a consistent relative position to their respective version strings.
+      </p> 
+      <p><a name="10"><a href="#10">10.</a></a>
+        All Version Meta tags MUST resolve to a Version Schema as defined by 
+        <a href="http://versionschema.org">versionschema.org.</a>
+      </p> 
+      <p><a name="#n">n.</a>
+      </p> 
+
+      <h2 id="why-use-version-meta">Why Use Version Meta?</h2>
+      <p>
+        Because you want your customers to understand your versioning scheme.
+        When your customers don't grok your release versioning policies,
+        you burn a lot of customer support cycles and so do they.  
+        Because you are proud of your processes and confident it will benefit both you and your customers.
+      </p>
+
+      <p>
+        Widespread adoption of Version Meta tags,
+        will allow automation to properly reason over dependency graphs and pull required updates with less risk to your software development projects.
+        It allows flexibility in processes,
+        avoiding the use of lowest common demonitor standards.
+        It's the next step from Semantic Versioning,
+        on the road out of dependency hell.
+      </p>
+
+      <h2 id="about">About</h2>
+      <p>
+        The Version Meta specification is originally authored by me, 
+        <a href="https://www.linkedin.com/in/joseph-donahue-43b4b790/">Joseph W Donahue</a>.  
+        I am looking forward to collaborating with anyone who has a contribution to make to this effort.
+      </p>
+
+
+      </div>
+    </div>
+
+    <h2 id="license">License</h2>
+
+    <p>
+    This document is <a href=LICENSE>licensed, as-per the LICENSE file,</a> 
+    as derived from the <a href="https://opensource.org/licenses/MIT">MIT License</a>.
+    The original condition:
+    <p>
+    "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software"
+    </p>
+    <p>
+    was changed to:
+    </p>
+    <p>
+    "The above copyright notice, 
+    <b>a clear indication whether the content has been modified</b>, 
+    and this permission notice shall be included in all copies or substantial portions of the Software".
+    </p>
+    In other words, MIT + tell everyone whether you simply copied the content or modified it.
+    </p>
+
+    <small>Last updated 2018-04-14 11:03:15 UTC</small>
+
+  </body>
+</html>
