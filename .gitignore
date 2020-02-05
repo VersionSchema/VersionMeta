@@ -218,3 +218,5 @@ FakesAssemblies/
 *.vpwhist
 *.vtg
 
+# Do not track the VMetaDiscussions folder
+VMetaDiscussions/       
