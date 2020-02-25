@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <!-- Notes to editors:
+          * Set tabs to 2 spaces.
+          * Never use tab characters.
+          * Remove all trailing white-space from lines.
+          * Some vertical white-space is good, too much is bad.
+          * Paragraphs should have one sentance per line!
+          * Use TODO's very sparingly and always include a link to the relevant issue(s)
+            or project task(s).
+  -->
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta name="author" content="Joseph W Donahue" />
     <meta name="description" content="Version Meta spec and web site" />
+    <meta http-equiv="Refresh" content="0;URL=https://versionmeta.org/" />
     <link rel="canonical" href="https://versionmeta.org/" />
     <title>Version Meta Experimental.0 {VSChemaUnderDef.0}</title>
   </head>
   <body>
     <!-- TODO: CSS! -->
     <div id="product-tag">
-      <h1>Version Meta<br>
-        <div id="semver-tag">
-          <small>
-            <small>
-                Experimental.0
-              <small>
-              <div id="versionmeta-tag">
-                {VSchemaInDev.0}
-              </div>
-              </small>
-            </small>
-          </small>
-        </div>
-      </h1>
+      <h1>Version Meta</h1>
+      <div id="version-tag">
+       Version: Experimental.0 {VSchemaInDev.0}
+      </div>
     </div>
 
     <h2 id="summary">
         Summary
     </h2>
     <p>
-    Version Meta is a proposed standard Uniform Resource Locator (URI) tag for version strings. 
-    The tag is meant to convey both human and machine readable information regarding the location of the version schema used to build the version string. 
+    Version Meta is a proposed standard tag for version strings. 
+    The tag is meant to convey both; human and machine readable information, regarding the location of the version schema used to build the version string. 
     All version meta tags will be enclosed in curly braces {} and MUST always immediately precede or follow a version string conforming to the specified schema. 
     See <a href=http://versionschema.org>versionschema.org</a> for details on the proposed schema DOM.
+    The version listed near the top of this page is an example of a well-known schema tag, that tooling can use to lookup the named schema (service location is TBD).
     </p>
 
     <h2 id="introduction">
@@ -122,9 +123,12 @@
       <h2 id="version_meta_specification">
         Version Meta Specification (VersionMeta)</h2>
       <p>
-      The key-words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>.  
+        The key-words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>.  
         The phrase "Version Meta tag" used herein, 
-        refers to tags used to specify a URI to a Version Schema and should not be confused with other meta tags that may be specified by various version schemes (Build Meta used in SemVer for instance).
+        refers to tags used to specify a URI to a Version Schema ({https://schemas.versionschema.org/SimpleCounter.xml}),
+        or a well-known identifier ({SimpleCounter}), 
+        and should not be confused with other meta tags,
+        that may be specified by various version schemes (Build Meta used in SemVer for instance).
       </p>
 
       <p><a name="1"><a href="#1">1.</a></a>
@@ -139,7 +143,9 @@
       <p>TBD: Different/Alternate delimiters?</p>
 
       <p><a name="3"><a href="#3">3.</a></a>
-        Version Meta tags MUST NOT contain any whitespace between the URI and the opening and closing currly braces.
+        Version Meta tags MUST NOT contain any whitespace, 
+        between the URI or well-known identifier, 
+        and the opening and closing currly braces.
       </p> 
       <p><a name="4"><a href="#4">4.</a></a>
         There MUST NOT be more than one Version Meta tag associated with any version string.
@@ -216,7 +222,8 @@
     In other words, MIT + tell everyone whether you simply copied the content or modified it.
     </p>
 
-    <small>Last updated 2018-08-22 23:52 UTC</small>
+    <p><small>Contact: metameister@versionmeta.org</small></p>
+    <p><small>Last updated 2020-02-05 11:00 UTC</small></p>
 
   </body>
 </html>
